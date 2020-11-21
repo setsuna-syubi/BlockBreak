@@ -9,8 +9,11 @@ import android.view.View
 import kotlin.random.Random
 
 class Block{
-    var Lcorner=0
-    var placeY=0
+    var LUcorner = 550f
+    var RUcorner = 450f
+    var LDcorner = 350f
+    var RDcorner = 350f
+
 }
 class Ball {
     val NOT_REF = 0
@@ -90,6 +93,7 @@ class Ball {
         }
     }
 
+
     //追加：タップ可能な範囲をRect型で返却するメソッド
     fun getTapArea():Rect{
         //追加実装：右が0，上がタップ不可な範囲×縦の倍率，左がxの最大値，下がyの最大値であるRect型を返す処理を実装
@@ -129,9 +133,9 @@ class MyView(ctx: Context) : View(ctx) {
         canvas.drawRect(ball.getTapArea(), paint)
         //変更：ボールを黒で描画する
         paint.color = Color.BLACK
-        canvas.drawCircle(ball.pointX, ball.pointY, (20*ball.mulX), paint)
+        canvas.drawCircle(ball.pointX, ball.pointY, (30*ball.mulX), paint)
         //追加：スタートでブロックを赤で追加
-        paint.color = Color.RED
-        canvas.drawRect(block.placeX, block.placeY,paint)
+        paint.color = Color.rgb(200,0,0)
+        canvas.drawRect(block.LUcorner,block.RUcorner,block.LDcorner,block.RDcorner,paint)
     }
 }
