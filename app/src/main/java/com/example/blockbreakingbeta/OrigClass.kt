@@ -119,7 +119,11 @@ class Ball {
         vecX = 0f
         vecY = 0f
     }
+    //ブロックに当たった時に反転させる
+    
 }
+
+
 
 class MyView(ctx: Context) : View(ctx) {
     val paint = Paint()
