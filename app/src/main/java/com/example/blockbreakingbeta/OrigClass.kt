@@ -9,10 +9,10 @@ import android.view.View
 import kotlin.random.Random
 
 class Block{
-    var LUcorner = 550f
-    var RUcorner = 450f
-    var LDcorner = 350f
-    var RDcorner = 350f
+    val LUcorner = 550f
+    val RUcorner = 450f
+    val LDcorner = 350f
+    val RDcorner = 350f
 
 }
 class Ball {
@@ -91,6 +91,26 @@ class Ball {
         } else {
             return false
         }
+        val LUcorner = 350f
+        val RUcorner = 350f
+        val LDcorner = 550f
+        val RDcorner = 450f
+        val tempX = pointX+vecX
+        val tempY = pointY+vecY
+
+
+
+
+
+
+
+        if (LUcorner<=tempX && RUcorner>=tempX){
+            vecX *= -1f
+        }
+        if (LUcorner>=tempY && LDcorner<=tempY){
+            vecY *=-1f
+        }
+
     }
 
 
@@ -120,7 +140,6 @@ class Ball {
         vecY = 0f
     }
     //ブロックに当たった時に反転させる
-    
 }
 
 
