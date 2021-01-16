@@ -67,17 +67,14 @@ class MainActivity : AppCompatActivity() {
                     ball.refX()
                     ball.refY()
                     isTapedBall = false
-                    count++
                 }
                 ball.REF_X -> {
                     ball.refX()
                     isTapedBall = false
-                    count++
                 }
                 ball.REF_Y -> {
                     ball.refY()
                     isTapedBall = false
-                    count++
                 }
                 ball.GAME_OVER -> {
                     ball.gameStop()

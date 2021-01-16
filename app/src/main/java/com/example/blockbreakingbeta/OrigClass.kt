@@ -5,15 +5,18 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
+import android.util.Log
 import android.view.View
 import kotlin.random.Random
-
+val leftX = 550f
+val topY = 450f
+val rightX = 350f
+val bottomY = 350f
 class Block{
-    val LUcorner = 550f
-    val RUcorner = 450f
-    val LDcorner = 350f
-    val RDcorner = 350f
-
+    val leftX = 550f
+    val topY = 450f
+    val rightX = 350f
+    val bottomY = 350f
 }
 class Ball {
     val NOT_REF = 0
@@ -58,8 +61,17 @@ class Ball {
         val gameOverFlag = yMax < tempY
         val xRefFlag = xMax < tempX || tempX < 0
         val yRefFlag = tempY < 0
-
-        return when{
+        val blockXFlag = pointX<=leftX||rightX<=pointX
+        val blockYFlag = pointY<=topY||bottomY<=pointY
+        if(leftX<=tempX && tempX<=rightX && topY<=tempY && tempY<= bottomY)
+        {
+            Log.d("aaa","block")
+            return when{
+            blockXFlag -> REF_X
+            blockYFlag -> REF_Y
+            else -> NOT_REF
+        }}
+           return when{
             gameOverFlag -> GAME_OVER
             xRefFlag && yRefFlag -> REF_BOTH
             xRefFlag && !yRefFlag -> REF_X
@@ -91,29 +103,8 @@ class Ball {
         } else {
             return false
         }
-        val LUcorner = 350f
-        val RUcorner = 350f
-        val LDcorner = 550f
-        val RDcorner = 450f
-        val tempX = pointX+vecX
-        val tempY = pointY+vecY
-
-
-
-
-
-
-
-        if (LUcorner<=tempX && RUcorner>=tempX){
-            vecX *= -1f
-        }
-        if (LUcorner>=tempY && LDcorner<=tempY){
-            vecY *=-1f
-        }
 
     }
-
-
     //追加：タップ可能な範囲をRect型で返却するメソッド
     fun getTapArea():Rect{
         //追加実装：右が0，上がタップ不可な範囲×縦の倍率，左がxの最大値，下がyの最大値であるRect型を返す処理を実装
@@ -139,11 +130,7 @@ class Ball {
         vecX = 0f
         vecY = 0f
     }
-    //ブロックに当たった時に反転させる
 }
-
-
-
 class MyView(ctx: Context) : View(ctx) {
     val paint = Paint()
     var ball = Ball()
@@ -159,6 +146,6 @@ class MyView(ctx: Context) : View(ctx) {
         canvas.drawCircle(ball.pointX, ball.pointY, (30*ball.mulX), paint)
         //追加：スタートでブロックを赤で追加
         paint.color = Color.rgb(200,0,0)
-        canvas.drawRect(block.LUcorner,block.RUcorner,block.LDcorner,block.RDcorner,paint)
+        canvas.drawRect(block.leftX,block.topY,block.rightX,block.bottomY,paint)
     }
 }
