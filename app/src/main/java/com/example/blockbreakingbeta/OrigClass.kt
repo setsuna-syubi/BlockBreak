@@ -8,15 +8,15 @@ import android.graphics.Rect
 import android.util.Log
 import android.view.View
 import kotlin.random.Random
-val leftX = 550f
-val topY = 450f
-val rightX = 350f
-val bottomY = 350f
+val leftX = 350f
+val topY = 350f
+val rightX = 550f
+val bottomY = 450f
 class Block{
-    val leftX = 550f
-    val topY = 450f
-    val rightX = 350f
-    val bottomY = 350f
+    val leftX = 350f
+    val topY = 350f
+    val rightX = 550f
+    val bottomY = 450f
 }
 class Ball {
     val NOT_REF = 0
@@ -61,6 +61,7 @@ class Ball {
         val gameOverFlag = yMax < tempY
         val xRefFlag = xMax < tempX || tempX < 0
         val yRefFlag = tempY < 0
+        //ブロック反射判定
         val blockXFlag = pointX<=leftX||rightX<=pointX
         val blockYFlag = pointY<=topY||bottomY<=pointY
         if(leftX<=tempX && tempX<=rightX && topY<=tempY && tempY<= bottomY)
@@ -143,7 +144,7 @@ class MyView(ctx: Context) : View(ctx) {
         canvas.drawRect(ball.getTapArea(), paint)
         //変更：ボールを黒で描画する
         paint.color = Color.BLACK
-        canvas.drawCircle(ball.pointX, ball.pointY, (30*ball.mulX), paint)
+        canvas.drawCircle(ball.pointX, ball.pointY, (25*ball.mulX), paint)
         //追加：スタートでブロックを赤で追加
         paint.color = Color.rgb(200,0,0)
         canvas.drawRect(block.leftX,block.topY,block.rightX,block.bottomY,paint)
