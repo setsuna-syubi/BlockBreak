@@ -63,7 +63,7 @@ class Ball {
         //ブロック反射判定
         val blockXFlag = pointX<=leftX||rightX<=pointX
         val blockYFlag = pointY<=topY||bottomY<=pointY
-        if(leftX<=tempX && tempX<=rightX && topY<=tempY && tempY<= bottomY)
+        if(leftX<=tempX && tempX<=rightX && topY<=tempY && tempY<= bottomY&&BLOCK_BREAKING == false)
         {
             Log.d("aaa","block")
             return when{
@@ -152,8 +152,7 @@ class MyView(ctx: Context) : View(ctx) {
         canvas.drawCircle(ball.pointX, ball.pointY, (25*ball.mulX), paint)
         //追加：スタートでブロックを赤で追加
         if (ball.BLOCK_BREAKING == true && ball.RESPORN_BLOCK == false) {
-//            canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-            Log.d("aaaaa","ssssss")
+            canvas.drawColor(0, PorterDuff.Mode.CLEAR)
         }
         if (ball.BLOCK_BREAKING == true && ball.RESPORN_BLOCK == true) {
             paint.color = Color.rgb(200,0,0)
