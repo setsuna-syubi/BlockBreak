@@ -67,10 +67,10 @@ class Ball {
         {
             Log.d("aaa","block")
             return when{
-            blockXFlag -> { REF_X
-                BLOCK_BREAKING = true}
-            blockYFlag -> { REF_Y
-                BLOCK_BREAKING = true}
+            blockXFlag -> { BLOCK_BREAKING = true
+                REF_X}
+            blockYFlag -> { BLOCK_BREAKING = true
+                REF_Y }
             else -> NOT_REF
             }
         }
@@ -89,6 +89,7 @@ class Ball {
         if (tapY <= topMargin * mulY) {
             return false
         }
+        RESPORN_BLOCK = true
 
         val tapXRange = (tapWidth * mulX) /2
         val tapYRange = (tapHeigth * mulY) / 2
@@ -142,10 +143,7 @@ class MyView(ctx: Context) : View(ctx) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         //ブロック削除行程
-        if (BLOCK_BREAKING = true && BLOCK_RESPORN = false)
-            canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-        else if (BLOCK_BREAKING = true && BLOCK_RESPORN = true)
-            invalidate()
+
         //追加：タップ可能な範囲を明るい灰色で描画する
         paint.color = Color.LTGRAY
         canvas.drawRect(ball.getTapArea(), paint)
@@ -153,8 +151,20 @@ class MyView(ctx: Context) : View(ctx) {
         paint.color = Color.BLACK
         canvas.drawCircle(ball.pointX, ball.pointY, (25*ball.mulX), paint)
         //追加：スタートでブロックを赤で追加
-        paint.color = Color.rgb(200,0,0)
-        canvas.drawRect(block.leftX,block.topY,block.rightX,block.bottomY,paint)
+        if (ball.BLOCK_BREAKING == true && ball.RESPORN_BLOCK == false) {
+//            canvas.drawColor(0, PorterDuff.Mode.CLEAR)
+            Log.d("aaaaa","ssssss")
+        }
+        if (ball.BLOCK_BREAKING == true && ball.RESPORN_BLOCK == true) {
+            paint.color = Color.rgb(200,0,0)
+            canvas.drawRect(block.leftX,block.topY,block.rightX,block.bottomY,paint)
+            ball.BLOCK_BREAKING = false
+            ball.RESPORN_BLOCK = false
+        }
+        if (ball.BLOCK_BREAKING == false){
+            paint.color = Color.rgb(200,0,0)
+            canvas.drawRect(block.leftX,block.topY,block.rightX,block.bottomY,paint)
+        }
         //当たったらブロック削除
         //もう一回ボールタップでブロック再配置
 
