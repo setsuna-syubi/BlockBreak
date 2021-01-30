@@ -1,10 +1,7 @@
 package com.example.blockbreakingbeta
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.util.Log
 import android.view.View
 import kotlin.random.Random
@@ -69,7 +66,9 @@ class Ball {
             Log.d("aaa","block")
             return when{
             blockXFlag -> REF_X
+                canvas.drawColor(0, PorterDuff.Mode.CLEAR)
             blockYFlag -> REF_Y
+                canvas.drawColor(0, PorterDuff.Mode.CLEAR)
             else -> NOT_REF
         }}
            return when{
@@ -148,5 +147,8 @@ class MyView(ctx: Context) : View(ctx) {
         //追加：スタートでブロックを赤で追加
         paint.color = Color.rgb(200,0,0)
         canvas.drawRect(block.leftX,block.topY,block.rightX,block.bottomY,paint)
+        //当たったらブロック削除
+        //もう一回ボールタップでブロック再配置
+
+        }
     }
-}
