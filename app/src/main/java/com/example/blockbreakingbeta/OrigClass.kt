@@ -21,6 +21,8 @@ class Ball {
     val REF_Y = 2
     val REF_BOTH = 3
     val GAME_OVER = 4
+    var BLOCK_BREAKING = false
+    var RESPORN_BLOCK = false
 
     //追加：タップ不可な範囲．上から2/3はタップしても無意味
     val topMargin = 600f
@@ -65,12 +67,13 @@ class Ball {
         {
             Log.d("aaa","block")
             return when{
-            blockXFlag -> REF_X
-                canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-            blockYFlag -> REF_Y
-                canvas.drawColor(0, PorterDuff.Mode.CLEAR)
+            blockXFlag -> { REF_X
+                BLOCK_BREAKING = true}
+            blockYFlag -> { REF_Y
+                BLOCK_BREAKING = true}
             else -> NOT_REF
-        }}
+            }
+        }
            return when{
             gameOverFlag -> GAME_OVER
             xRefFlag && yRefFlag -> REF_BOTH
@@ -138,6 +141,11 @@ class MyView(ctx: Context) : View(ctx) {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        //ブロック削除行程
+        if (BLOCK_BREAKING = true && BLOCK_RESPORN = false)
+            canvas.drawColor(0, PorterDuff.Mode.CLEAR)
+        else if (BLOCK_BREAKING = true && BLOCK_RESPORN = true)
+            invalidate()
         //追加：タップ可能な範囲を明るい灰色で描画する
         paint.color = Color.LTGRAY
         canvas.drawRect(ball.getTapArea(), paint)
