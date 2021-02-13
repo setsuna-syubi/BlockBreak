@@ -151,10 +151,7 @@ class MyView(ctx: Context) : View(ctx) {
         paint.color = Color.BLACK
         canvas.drawCircle(ball.pointX, ball.pointY, (25*ball.mulX), paint)
         //追加：スタートでブロックを赤で追加
-        if (ball.BLOCK_BREAKING == true && ball.RESPORN_BLOCK == false) {
-            canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-        }
-        if (ball.BLOCK_BREAKING == true && ball.RESPORN_BLOCK == true) {
+        if (ball.RESPORN_BLOCK == true) {
             paint.color = Color.rgb(200,0,0)
             canvas.drawRect(block.leftX,block.topY,block.rightX,block.bottomY,paint)
             ball.BLOCK_BREAKING = false
