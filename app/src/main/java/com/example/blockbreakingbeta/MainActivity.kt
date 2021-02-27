@@ -80,9 +80,8 @@ class MainActivity : AppCompatActivity() {
                 ball.GAME_OVER -> {
                     ball.gameStop()
                     isTapedBall = false
-                    textView.text="score ${count}"
+                    textView.text="score ${ball.count}"
                     textView.visibility = View.VISIBLE
-                    ball.count
                     ball.count = 0
                 }
             }
