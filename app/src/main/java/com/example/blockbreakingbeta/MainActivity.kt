@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //初期化
+        Realm.init(this)
 
         myView = MyView(this)
         area.addView(myView)
@@ -81,9 +85,10 @@ class MainActivity : AppCompatActivity() {
                     isTapedBall = false
                     textView.text="score ${count}"
                     textView.visibility = View.VISIBLE
+                    ball.count
+                    ball.count = 0
                 }
             }
-
             ball.move()
             //変更：ボールのデータを全て渡す
             myView.ball = ball

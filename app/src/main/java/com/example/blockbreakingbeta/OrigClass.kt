@@ -23,6 +23,7 @@ class Ball {
     val GAME_OVER = 4
     var BLOCK_BREAKING = false
     var RESPORN_BLOCK = false
+    var count = 0
 
     //追加：タップ不可な範囲．上から2/3はタップしても無意味
     val topMargin = 600f
@@ -67,7 +68,9 @@ class Ball {
         {
             Log.d("aaa","block")
             return when{
+                count++
             blockXFlag -> { BLOCK_BREAKING = true
+                    count++
                 REF_X}
             blockYFlag -> { BLOCK_BREAKING = true
                 REF_Y }
