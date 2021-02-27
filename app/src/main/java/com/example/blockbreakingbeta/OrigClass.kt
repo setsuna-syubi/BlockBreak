@@ -68,12 +68,13 @@ class Ball {
         {
             Log.d("aaa","block")
             return when{
-                count++
             blockXFlag -> { BLOCK_BREAKING = true
                     count++
                 REF_X}
             blockYFlag -> { BLOCK_BREAKING = true
+                count++
                 REF_Y }
+
             else -> NOT_REF
             }
         }
