@@ -26,9 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //初期化
-        Realm.init(this)
-
         myView = MyView(this)
         area.addView(myView)
         //追加：touchListenerを付けてタップを検出
